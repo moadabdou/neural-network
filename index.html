@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    span {
+        display: inline-block;
+    }
+    div {
+    margin: 0;
+    padding: 0;
+    height: 10px;
+}
+</style>
+</head>
+<body>
+<script  src="d.js"></script>
+    <script >
+  let  filter  =  [
+    [-5 , -5 ,  -5], 
+    [5 ,  5   ,  5], 
+    [0 ,  0 , 0]
+] 
+let  filter1  =  [
+    [-5 , 5 ,  0], 
+    [-5 ,  5   ,  0], 
+    [-5 ,  5 , 0]
+]           
+function  pool  (img ,  st){
+    let  pimg  =  []
+    for(let y =  0  ;  y < img.length ;  y += st){
+        let  r =  []
+        for(let x =  0  ; x  < img.length  ;  x  +=st){
+            
+            let  fd =  -Infinity ;
+            for  (let  j  =  0 ; j < st ; j++){
+                for  (let  i  =  0 ; i < st ; i++){
+                    fd =  Math.max(fd ,  img[y+j][x+i])
+                }
+            }
+            r.push(fd)
+
+        }
+        pimg.push(r)
+    }
+    return pimg
+}
+function  conv  (img ,  f){
+    let  fimg  =  []
+    for(let x =  0  ;  x  <  26;  x ++){
+        for(let y =  0  ;  y  < 26  ;  y  ++){
+            
+            let  fd =  0 ;
+            for  (let  j  =  0 ; j < 3 ; j++){
+                for  (let  i  =  0 ; i < 3 ; i++){
+                    fd += (img[(y+j)*28+ x+i] * f[i][j])
+                }
+            }
+            fimg.push(fd)
+
+        }
+    }
+    return fimg
+}
+
+let img  = data 
+img  =  conv(img ,[
+      [0.9165740400607865,
+      0.6796694825916958,
+      1.6497674725603835],
+      [2.5695406047621994,
+      2.454136780813096,
+      1.5890868702756678],
+      [1.7783732421878662,
+      0.2460319216913221,
+      2.006280654911611]
+    ])
+draw()
+function draw() {
+    for(let  x =  0;  x < Math.sqrt(img.length) ;  x ++){
+            let  d = "";
+            for(let  y =  0 ;  y < Math.sqrt(img.length) ;  y ++){
+                
+                d += "<span style='width:10px;height:10px;background-color:rgba(0 , 0  , 0, "+img[y + Math.sqrt(img.length)  * x]+")'></span>"
+            }
+            document.body.innerHTML+= '<div>'+d+'</div>'
+
+        }
+}
+    </script>
+</body>
+</html>

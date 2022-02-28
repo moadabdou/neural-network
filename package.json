@@ -1,0 +1,15 @@
+{
+  "name": "mips1",
+  "version": "1.0.0",
+  "description": "var PNG = require('pngjs').PNG;\r var fs = require(\"fs\");",
+  "main": "d.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pngjs": "^6.0.0"
+  }
+}
